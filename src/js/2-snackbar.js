@@ -3,13 +3,14 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const refs = {
   form: document.querySelector('.form'),
+  delayInput: document.querySelector('input[name="delay"]'),
 };
 
 const handleSubmit = event => {
   event.preventDefault();
 
-  const delay = Number(refs.form.elements.delay.value);
-  const state = refs.form.elements.state.value;
+  const delay = Number(refs.delayInput.value);
+  const state = refs.form.querySelector('input[name="state"]:checked').value;
 
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -38,6 +39,7 @@ const handleSubmit = event => {
         color: '#ef4040',
       });
     });
+  refs.form.reset();
 };
 
 refs.form.addEventListener('submit', handleSubmit);
